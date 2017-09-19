@@ -1,0 +1,45 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mysql": "mysql://root:@localhost:3306/social",
+  "authentication": {
+    "secret": "a2c1cae7b419d476c696f73f9c720cbc3bc3a7ee8d0737ebc26f00d1d418d172c08ff4e64781f1561280db92d0a3704266a9000d392de35b3120233879c8a8d3b6219c36a90490a52cc66dc2f03ca07d454dabb3a450ebfcfaad3165b07d455bc34717e1f0afc3e75d15ee86cd2c8a5dca4a7d75769419bb762bdad473455796f0d71e82ebf816543729d9a70d50c60649aec9ddef638e1b8ed97ddec8ca39b7d0364a98612e773ec3e83f959c43f99f4b8b00a871a9fdf1a66c88efb59b32f30bc8e5f09fa820729303521c1a129ebeaf9651c1a68d2a79929fb0fa93df0f9a1db1f113dfe3d53425323b9c75e1639a18f4088b502780f6b4c0d6280aea75c3",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "type": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d",
+        "secret": "authentication.secret" // Your main secret provided to passport-jwt
+    },
+    "local": {
+      "entity": "users",
+      "usernameField": "email",
+      "passwordField": "password",
+      "hash":"customHashFunction", // default is the bcrypt hash function. Takes in a password and returns a hash.
+"Verier":{
+      "constructor":["app", "options"],// the class constructor
+    "comparePassword":["entity", "password"], // compares password using bcrypt
+   "normalizeResult":"result", // normalizes result from service to account for pagination
+    "verify":["req, username, password, done"] // queries the service and calls the other internal functions.
+
+}
+}
+
+}
+    }
+  
